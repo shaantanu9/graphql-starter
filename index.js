@@ -2,6 +2,11 @@ import { ApolloServer } from "apollo-server";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import connect from "./config/db.js";
 
+await connect();
+
+// Import Models
+import "./models/User.js";
+
 // Import typeDefs and resolvers from types/index.js and resolvers/index.js
 import resolvers from "./resolvers/index.js";
 import typeDefs from "./types/index.js";
@@ -14,11 +19,5 @@ const server = new ApolloServer({
 });
 
 server.listen().then((res) => {
-  connect()
-    .then(() => {
-      console.log(`🚀  Server ready at ${res.url}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  console.log(`Server running at ${res.url}`);
 });
