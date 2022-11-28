@@ -1,6 +1,12 @@
+import dotenv from "dotenv";
 import mongoose from "mongoose";
+import { createToken } from "../../utils/index.js";
 import { createOne, deleteOne } from "../crud.js";
+
+// Get User Model from Mongoose
 const User = mongoose.model("User");
+// Dotenv config
+dotenv.config();
 
 const createUser = async (userInput) => {
   const user = await User.findOne({ email: userInput.email });
@@ -36,10 +42,12 @@ const loginUser = async (userInput) => {
       message: "Incorrect password", // Incorrect password
     };
   }
+  const token = createToken(user, 86400 * 10);
+
   return {
     // status: 200,
     // message: "Login successful", // Login successful
-    token: "token",
+    token,
   };
 };
 

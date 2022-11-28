@@ -21,13 +21,14 @@ const typeDefs = gql`
     login(loginUser: loginInput!): Token
   }
   input UserInput {
-    name: String
-    email: String
-    password: String
+    name: String!
+    email: String!
+    password: String!
+    phone: String
   }
   input loginInput {
-    email: String
-    password: String
+    email: String!
+    password: String!
   }
   type Token {
     token: String
