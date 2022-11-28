@@ -14,3 +14,11 @@ export const getUsers = async () => {
   const users = await readAll(User);
   return users;
 };
+
+export const privateRoute = async (authorization) => {
+  console.log(authorization, "authorization");
+  return {
+    status: 200,
+    message: "Private route",
+  };
+};

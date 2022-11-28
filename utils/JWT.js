@@ -6,3 +6,6 @@ export function createToken(user, time) {
     expiresIn: time, // expires in 15 days
   });
 }
+export function verifyToken(token) {
+  return jwt.verify(token, process.env.JWT_SECRET);
+}

@@ -1,7 +1,12 @@
-import { getAllUsers, getSingleUser, getUsers } from "./users.query.js";
+import {
+  getAllUsers,
+  getSingleUser,
+  getUsers,
+  privateRoute,
+} from "./users.query.js";
 
 const Query = {
-  user: { getAllUsers, getSingleUser, getUsers },
+  user: { getAllUsers, getSingleUser, getUsers, privateRoute },
 };
 
 export default Query;

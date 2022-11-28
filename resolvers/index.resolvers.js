@@ -4,7 +4,7 @@ import Query from "./query/index.js";
 const { user } = Query;
 const { createUser, deleteSingleUser, loginUser } = MutationData;
 // Single resolvers
-const { getAllUsers, getSingleUser, getUsers } = user;
+const { getAllUsers, getSingleUser, getUsers, privateRoute } = user;
 
 // Resolvers define the technique for fetching the types in the schema.
 const resolvers = {
@@ -14,6 +14,10 @@ const resolvers = {
     singleUser: async () => {
       const users = await getUsers();
       return users;
+    },
+    privateroute: async (_, __, context) => {
+      privateRoute(context);
+      return { private: "route" };
     },
   },
   Mutation: {
@@ -25,7 +29,8 @@ const resolvers = {
       const deletedUser = await deleteSingleUser(id);
       return deletedUser;
     },
-    login: async (_, loginData) => {
+    login: async (_, loginData, context) => {
+      console.log(context.res, "context");
       const token = await loginUser(loginData.loginUser);
       return token;
     },

@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { createToken } from "../../utils/index.js";
+import { createToken } from "../../utils/index.utils.js";
 import { createOne, deleteOne } from "../crud.js";
 
 // Get User Model from Mongoose
@@ -50,5 +50,7 @@ const loginUser = async (userInput) => {
     token,
   };
 };
+
+
 
 export { createUser, deleteSingleUser, loginUser };
