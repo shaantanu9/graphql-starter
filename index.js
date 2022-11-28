@@ -8,7 +8,7 @@ await connect();
 import "./models/User.js";
 
 // Import typeDefs and resolvers from types/index.js and resolvers/index.js
-import resolvers from "./resolvers/index.js";
+import resolvers from "./resolvers/index.resolvers.js";
 import typeDefs from "./types/index.js";
 
 // The ApolloServer constructor requires two parameters: your schema definition and your set of resolvers.

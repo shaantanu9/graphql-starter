@@ -2,7 +2,7 @@ import MutationData from "./mutation/index.js";
 import Query from "./query/index.js";
 // All the resolvers
 const { user } = Query;
-const { createUser } = MutationData;
+const { createUser, deleteSingleUser, loginUser } = MutationData;
 // Single resolvers
 const { getAllUsers, getSingleUser, getUsers } = user;
 
@@ -17,9 +17,17 @@ const resolvers = {
     },
   },
   Mutation: {
-    register: (_, { UserInput }) => {
-      console.log(UserInput);
-      createUser(UserInput);
+    register: async (_, { userNew }) => {
+      const newUser = createUser(userNew);
+      return newUser;
+    },
+    deleteUser: async (_, { id }) => {
+      const deletedUser = await deleteSingleUser(id);
+      return deletedUser;
+    },
+    login: async (_, loginData) => {
+      const token = await loginUser(loginData.loginUser);
+      return token;
     },
   },
 };

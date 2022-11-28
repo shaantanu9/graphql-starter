@@ -1,12 +1,16 @@
 import mongoose from "mongoose";
+import { readAll, readOne } from "../crud.js";
 const User = mongoose.model("User");
 
-import users from "../../user.js";
-export const getAllUsers = () => users;
-export const getSingleUser = (_id) => users.find((user) => user._id === id);
-
+export const getAllUsers = async () => {
+  const data = await readAll(User);
+  return data;
+};
+export const getSingleUser = async (id) => {
+  const user = await readOne(User, id);
+  return user;
+};
 export const getUsers = async () => {
-  const users = await User.find();
-  console.log(users, "users from db");
+  const users = await readAll(User);
   return users;
 };

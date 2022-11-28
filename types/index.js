@@ -16,12 +16,21 @@ const typeDefs = gql`
     updatedAt: String
   }
   type Mutation {
-    register(UserInput: UserInput!): User
+    register(userNew: UserInput!): User
+    deleteUser(id: ID!): User
+    login(loginUser: loginInput!): Token
   }
   input UserInput {
     name: String
     email: String
     password: String
+  }
+  input loginInput {
+    email: String
+    password: String
+  }
+  type Token {
+    token: String
   }
 `;
 
