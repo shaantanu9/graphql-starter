@@ -5,7 +5,7 @@ const typeDefs = gql`
     users: [User]
     user(id: ID!): User
     singleUser: [User]
-    privateroute: PrivateRoute
+    privateroute: [User]
   }
   type User {
     _id: String
@@ -35,7 +35,7 @@ const typeDefs = gql`
     token: String
   }
   type PrivateRoute {
-    private: String
+    data : [User]
   }
 `;
 

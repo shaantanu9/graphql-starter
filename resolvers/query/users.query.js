@@ -16,16 +16,11 @@ export const getUsers = async () => {
   return users;
 };
 
-export const privateRoute = async (bearerToken) => {
+export const privateRoute = async (bearerToken, cb) => {
   const token = bearerToken.split(" ")[1];
   const user = await verifyToken(token);
-  console.log(user, "user");
-  if (!user) {
-    return {
-      private: "false",
-    };
-  }
-  return {
-    private: "true",
-  };
+
+  if (!user) return [{}];
+  const data = await cb();
+  return data;
 };

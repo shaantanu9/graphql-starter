@@ -15,7 +15,7 @@ const resolvers = {
       const users = await getUsers();
       return users;
     },
-    privateroute: async (_, __, { token }) => privateRoute(token),
+    privateroute: async (_, __, { token }) => privateRoute(token, getAllUsers),
   },
   Mutation: {
     register: async (_, { userNew }) => {
