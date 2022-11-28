@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { verifyToken } from "../../utils/index.utils.js";
 import { readAll, readOne } from "../crud.js";
 const User = mongoose.model("User");
 
@@ -15,10 +16,16 @@ export const getUsers = async () => {
   return users;
 };
 
-export const privateRoute = async (authorization) => {
-  console.log(authorization, "authorization");
+export const privateRoute = async (bearerToken) => {
+  const token = bearerToken.split(" ")[1];
+  const user = await verifyToken(token);
+  console.log(user, "user");
+  if (!user) {
+    return {
+      private: "false",
+    };
+  }
   return {
-    status: 200,
-    message: "Private route",
+    private: "true",
   };
 };

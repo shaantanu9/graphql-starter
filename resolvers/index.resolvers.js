@@ -15,10 +15,7 @@ const resolvers = {
       const users = await getUsers();
       return users;
     },
-    privateroute: async (_, __, context) => {
-      privateRoute(context);
-      return { private: "route" };
-    },
+    privateroute: async (_, __, { token }) => privateRoute(token),
   },
   Mutation: {
     register: async (_, { userNew }) => {

@@ -7,5 +7,10 @@ export function createToken(user, time) {
   });
 }
 export function verifyToken(token) {
-  return jwt.verify(token, process.env.JWT_SECRET);
+  return jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return null;
+    }
+    return decoded;
+  });
 }

@@ -16,9 +16,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-  context: ({ req, res }) => {
+  context: ({ req }) => {
     const token = req.headers.authorization || "";
-    return { token, req, res };
+    return { token };
   },
 });
 
